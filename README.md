@@ -6,7 +6,10 @@ GPIO17 active-low, pull-up button dispatcher for Debian Trixie / Raspberry Pi us
 
 ## Install
 
-```bash
+```sudo apt update
+sudo apt install -y git
+git clone https://github.com/Aaron315-Indy/HotSpotRadioHAT-Button.git
+cd HotSpotRadioHAT-Button
 sudo bash install.sh
 ```
 
@@ -19,7 +22,7 @@ Put executable shell scripts at `/usr/local/lib/hat-button/1tap.sh`, `2tap.sh`, 
 ```bash
 #!/usr/bin/env bash
 set -euo pipefail
-/usr/sbin/asterisk -rx 'rpt fun 520355 *31600'
+/usr/sbin/asterisk -rx 'rpt fun <URNODE> *31600'
 ```
 
 The service launches actions detached, with a 120-second timeout and 5-second kill grace. **Actions can overlap** if invoked repeatedly; the dispatcher does not serialize them. Script stdout/stderr are discarded; use `logger` inside scripts for diagnostics. Scripts execute as root; only trusted administrators should edit them.
