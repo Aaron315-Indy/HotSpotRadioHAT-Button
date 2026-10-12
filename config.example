@@ -1,0 +1,6 @@
+# Arguments to the Python GPIO monitor. Adjust only if your hardware differs.
+CHIP=/dev/gpiochip0
+LINE=17
+HOLD=3.0
+GAP=0.65
+DEBOUNCE_MS=40

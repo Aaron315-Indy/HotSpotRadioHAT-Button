@@ -1,0 +1,13 @@
+[Unit]
+Description=HotSpotRadios HAT Multi-Tap Button and 3-Second Shutdown
+After=multi-user.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/hat-button/config
+ExecStart=/usr/bin/python3 -u /usr/local/sbin/hat-power-button.py --chip ${CHIP} --line ${LINE} --hold ${HOLD} --gap ${GAP} --debounce-ms ${DEBOUNCE_MS}
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
