@@ -18,6 +18,13 @@ for n in {1..5}; do
   [[ -e "$target" ]] || install -m 755 "$ROOT/examples/tap.sh" "$target"
 done
 install -m 644 "$ROOT/hat-power-button.service" /etc/systemd/system/hat-power-button.service
+# Remove the obsolete boot-ordering override from earlier installations.
+override="/etc/systemd/system/hat-power-button.service.d/override.conf"
+if [[ -f "$override" ]] &&
+   grep -q '^After=basic.target$' "$override"; then
+  rm -f "$override"
+fi
+
 systemctl daemon-reload
 systemctl enable hat-power-button.service
 systemctl restart hat-power-button.service
