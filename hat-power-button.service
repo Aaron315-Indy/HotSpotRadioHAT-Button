@@ -1,6 +1,5 @@
 [Unit]
 Description=HotSpotRadios HAT Multi-Tap Button and 3-Second Shutdown
-After=multi-user.target
 
 [Service]
 Type=simple
